@@ -15,7 +15,11 @@
     "ai",
     "evaluation"
   ],
-  "homepage": "https://github.com/priyanshus/evaliphy#readme",
+  
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://evaliphy.com",
   "bugs": {
     "url": "https://github.com/priyanshus/evaliphy/issues"
   },

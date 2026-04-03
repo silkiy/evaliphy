@@ -29,6 +29,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-zinc-900 selection:bg-zinc-100">
+        <div className="bg-amber-50 border-b border-amber-100 py-2 px-4 text-center text-xs font-medium text-amber-800">
+          Evaliphy is currently in beta. It is not recommended for production use yet. Please try it out and{" "}
+          <a
+            href="https://github.com/priyanshus/evaliphy/issues"
+            target="_blank"
+            rel="noreferrer"
+            className="underline decoration-amber-200 hover:decoration-amber-400 transition-colors"
+          >
+            share your feedback
+          </a>
+          .
+        </div>
         <header className="sticky top-0 z-50 w-full border-b border-zinc-100 bg-white/80 backdrop-blur-md">
           <div className="container mx-auto flex h-14 max-w-screen-2xl items-center justify-between px-4 md:px-8">
             <div className="flex items-center gap-6 md:gap-10">

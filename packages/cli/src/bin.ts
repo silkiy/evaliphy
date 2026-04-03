@@ -1,12 +1,19 @@
-import { program } from 'commander';
 import { ConfigLoader } from '@evaliphy/core';
+import { program } from 'commander';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { handleFatalError, parseCLI } from './config/cliConfigUtil.js';
 import { createProject } from "./initProject/createFolderStructure.js";
 import { runRegistry } from './runner/runEval.js';
 
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const packageJsonPath = join(__dirname, '../package.json');
+const { version } = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
+
 program
     .name('evaliphy')
-    .version('1.0.0')
+    .version(version)
     .description('Evaliphy — eval runner for LLM pipelines')
 
 program

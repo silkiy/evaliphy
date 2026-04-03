@@ -10,7 +10,7 @@ The first QA-centric SDK for testing Retrieval-Augmented Generation. Write end-t
 ## Quick Start
 
 ```bash
-npm install evaliphy@beta
+npm install -g evaliphy
 npx evaliphy init
 ```
 

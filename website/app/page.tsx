@@ -36,11 +36,11 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4">
             <button
               onClick={() =>
-                navigator.clipboard.writeText("npm install evaliphy@beta")
+                navigator.clipboard.writeText("npm install evaliphy")
               }
               className="group relative px-8 py-3 bg-zinc-900 text-white rounded-lg font-mono text-sm hover:bg-zinc-800 transition-colors flex items-center gap-2"
             >
-              npm install evaliphy@beta
+              npm install -g evaliphy
               <svg
                 className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"
                 fill="none"
@@ -384,7 +384,7 @@ export default function Home() {
                 <div className="bg-black rounded-lg p-4 font-mono text-sm text-zinc-300 space-y-2">
                   <div className="flex gap-2">
                     <span className="text-zinc-500">$</span>
-                    <span>npm install evaliphy@beta</span>
+                    <span>npm install -g evaliphy</span>
                   </div>
                   <div className="flex gap-2">
                     <span className="text-zinc-500">$</span>
