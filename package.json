@@ -1,6 +1,6 @@
 {
   "name": "evaliphy",
-  "version": "1.0.1-beta.0",
+  "version": "1.0.1-beta.1",
   "type": "module",
   "description": "The first QA-centric SDK for testing Retrieval-Augmented Generation (RAG).",
   "main": "./dist/index.mjs",
@@ -15,7 +15,6 @@
     "ai",
     "evaluation"
   ],
-  
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
