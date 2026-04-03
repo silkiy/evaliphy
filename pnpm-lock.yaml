@@ -93,22 +93,22 @@ importers:
       '@ai-sdk/openai-compatible':
         specifier: ^2.0.36
         version: 2.0.37(zod@3.25.76)
+      '@evaliphy/core':
+        specifier: workspace:*
+        version: link:../core
       ai:
         specifier: ^6.0.142
         version: 6.0.142(zod@3.25.76)
-      evaliphy-core:
-        specifier: workspace:*
-        version: link:../core
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
 
   packages/assertions:
     dependencies:
-      evaliphy-ai:
+      '@evaliphy/ai':
         specifier: workspace:*
         version: link:../ai
-      evaliphy-core:
+      '@evaliphy/core':
         specifier: workspace:*
         version: link:../core
       zod:
@@ -117,24 +117,24 @@ importers:
 
   packages/cli:
     dependencies:
+      '@evaliphy/ai':
+        specifier: workspace:*
+        version: link:../ai
+      '@evaliphy/assertions':
+        specifier: workspace:*
+        version: link:../assertions
+      '@evaliphy/client':
+        specifier: workspace:*
+        version: link:../client
+      '@evaliphy/core':
+        specifier: workspace:*
+        version: link:../core
+      '@evaliphy/reporters':
+        specifier: workspace:*
+        version: link:../reporters
       commander:
         specifier: 'catalog:'
         version: 12.1.0
-      evaliphy-ai:
-        specifier: workspace:*
-        version: link:../ai
-      evaliphy-assertions:
-        specifier: workspace:*
-        version: link:../assertions
-      evaliphy-client:
-        specifier: workspace:*
-        version: link:../client
-      evaliphy-core:
-        specifier: workspace:*
-        version: link:../core
-      evaliphy-reporters:
-        specifier: workspace:*
-        version: link:../reporters
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -144,7 +144,7 @@ importers:
 
   packages/client:
     dependencies:
-      evaliphy-core:
+      '@evaliphy/core':
         specifier: workspace:*
         version: link:../core
 
@@ -152,7 +152,7 @@ importers:
 
   packages/reporters:
     dependencies:
-      evaliphy-core:
+      '@evaliphy/core':
         specifier: workspace:*
         version: link:../core
       picocolors:

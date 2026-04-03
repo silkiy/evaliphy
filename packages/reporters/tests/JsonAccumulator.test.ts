@@ -1,4 +1,4 @@
-import { emitter } from 'evaliphy-core';
+import { emitter } from '@evaliphy/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { JsonAccumulator } from '../src/accumulator/JsonAccumulator.js';
 

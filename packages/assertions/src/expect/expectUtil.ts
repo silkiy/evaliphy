@@ -1,4 +1,4 @@
-import { getResult } from 'evaliphy-core';
+import { getResult } from '@evaliphy/core';
 import type { AssertionContext, AssertionOptions, AssertionResult, EvalInput, EvalResult } from '../engine/types.js';
 
 /**

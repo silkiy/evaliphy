@@ -1,5 +1,5 @@
 {
-  "name": "evaliphy-reporters",
+  "name": "@evaliphy/reporters",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "evaliphy-core": "workspace:*",
+    "@evaliphy/core": "workspace:*",
     "picocolors": "^1.0.0"
   }
 }

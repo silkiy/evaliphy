@@ -1,15 +1,15 @@
 {
-  "name": "evaliphy-cli",
+  "name": "@evaliphy/cli",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "main": "./src/bin.ts",
   "dependencies": {
-    "evaliphy-core": "workspace:*",
-    "evaliphy-reporters": "workspace:*",
-    "evaliphy-client": "workspace:*",
-    "evaliphy-assertions": "workspace:*",
-    "evaliphy-ai": "workspace:*",
+    "@evaliphy/core": "workspace:*",
+    "@evaliphy/reporters": "workspace:*",
+    "@evaliphy/client": "workspace:*",
+    "@evaliphy/assertions": "workspace:*",
+    "@evaliphy/ai": "workspace:*",
     "commander": "catalog:",
     "fast-glob": "^3.3.3",
     "tsx": "catalog:"

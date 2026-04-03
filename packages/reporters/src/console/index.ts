@@ -1,18 +1,18 @@
-import { 
-  EvaliphyError, 
-  EvaliphyReporter, 
-  RunEndPayload, 
-  RunStartPayload, 
-  TestFailPayload, 
-  TestPassPayload, 
-  TestRetryPayload, 
-  TestStartPayload,
-  DiscoveryStartPayload,
+import {
+  DiscoveryEndPayload,
   DiscoveryFilePayload,
-  DiscoveryEndPayload
-} from 'evaliphy-core';
-import pc from 'picocolors';
+  DiscoveryStartPayload,
+  EvaliphyError,
+  EvaliphyReporter,
+  RunEndPayload,
+  RunStartPayload,
+  TestFailPayload,
+  TestPassPayload,
+  TestRetryPayload,
+  TestStartPayload
+} from '@evaliphy/core';
 import path from 'path';
+import pc from 'picocolors';
 
 export interface ConsoleReporterOptions {
   verbose?: boolean;
@@ -53,7 +53,7 @@ export class ConsoleReporter implements EvaliphyReporter {
     
     const details: [string, string][] = [
       ['Run ID', payload.runId],
-      ['Model', payload.resolvedConfig.model || 'default'],
+      ['Model', payload.resolvedConfig.llmAsJudgeConfig?.model || 'default'],
       ['Timeout', payload.resolvedConfig.timeout ? `${payload.resolvedConfig.timeout}ms` : 'default'],
     ];
 

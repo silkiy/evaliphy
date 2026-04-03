@@ -3,7 +3,7 @@ import {
   generateText,
   LanguageModel,
 } from 'ai';
-import { EvaliphyError, EvaliphyErrorCode, ILLMClient, LLMJudgeConfig, LLMObjectResponse, LLMResponse, LLMUsage, logger } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode, ILLMClient, LLMJudgeConfig, LLMObjectResponse, LLMResponse, LLMUsage, logger } from '@evaliphy/core';
 import { z } from 'zod';
 
 

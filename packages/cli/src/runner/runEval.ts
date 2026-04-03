@@ -12,7 +12,7 @@ import {
     logger,
     withConfig,
     withResult
-} from 'evaliphy-core';
+} from '@evaliphy/core';
 import path from 'path';
 import { discoverFiles } from '../discovery/discoverFiles.js';
 import { createFixtures, registerReporters, resolveReporters } from './runnerUtil.js';

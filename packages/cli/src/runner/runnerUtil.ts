@@ -1,8 +1,8 @@
-import { createLLMClient } from "evaliphy-ai";
-import { createHttpClient } from "evaliphy-client";
-import type { EvaliphyReporter } from 'evaliphy-core';
-import { emitter, EvaliphyConfig, EvaluationFixtures, } from 'evaliphy-core';
-import { ConsoleReporter, HtmlWriter, JsonAccumulator } from 'evaliphy-reporters';
+import { createLLMClient } from "@evaliphy/ai";
+import { createHttpClient } from "@evaliphy/client";
+import type { EvaliphyReporter } from '@evaliphy/core';
+import { emitter, EvaliphyConfig, EvaluationFixtures, } from '@evaliphy/core';
+import { ConsoleReporter, HtmlWriter, JsonAccumulator } from '@evaliphy/reporters';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 

@@ -1,9 +1,9 @@
-import { EvaliphyError, logger } from 'evaliphy-core';
+import { EvaliphyError, logger } from '@evaliphy/core';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { resolveApiKey } from '../../src/providers/apiKey.js';
 
-vi.mock('evaliphy-core', async () => {
-  const actual = await vi.importActual('evaliphy-core') as any;
+vi.mock('@evaliphy/core', async () => {
+  const actual = await vi.importActual('@evaliphy/core') as any;
   return {
     ...actual,
     logger: {

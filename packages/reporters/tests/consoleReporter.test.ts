@@ -15,7 +15,7 @@ describe('ConsoleReporter', () => {
     const payload: RunStartPayload = {
       runId: 'test-run',
       totalTests: 1,
-      resolvedConfig: { model: 'gpt-4o' }
+      resolvedConfig: { llmAsJudgeConfig: { model: 'gpt-4o', provider: { type: 'openai' } } } as any
     };
     reporter.onRunStart(payload);
     expect(consoleSpy).toHaveBeenCalled();

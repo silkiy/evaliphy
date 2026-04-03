@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
 import path from 'node:path';
 import type { BaseMatcher } from '../matchers/base/BaseMatcher.js';
 import { PromptLoader } from '../promptManager/promptLoader.js';

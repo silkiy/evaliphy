@@ -4,17 +4,19 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
+    "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": ".",
     "paths": {
-      "evaliphy-core": ["./packages/core/src/index.ts"],
-      "evaliphy-cli": ["./packages/cli/src/bin.ts"],
-      "evaliphy-reporters": ["./packages/reporters/src/index.ts"],
-      "evaliphy-ai": ["./packages/ai/src/index.ts"],
-      "evaliphy-assertions": ["./packages/assertions/src/index.ts"]
+      "@evaliphy/core": ["./packages/core/src/index.ts"],
+      "@evaliphy/cli": ["./packages/cli/src/bin.ts"],
+      "@evaliphy/reporters": ["./packages/reporters/src/index.ts"],
+      "@evaliphy/ai": ["./packages/ai/src/index.ts"],
+      "@evaliphy/assertions": ["./packages/assertions/src/index.ts"],
+      "@evaliphy/client": ["./packages/client/src/index.ts"]
     }
   },
   "include": [

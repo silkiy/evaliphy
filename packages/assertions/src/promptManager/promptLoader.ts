@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
 import fs from 'node:fs';
 import { AssertionDefinition } from "../registry.js";
 

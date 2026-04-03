@@ -1,8 +1,8 @@
 import { LanguageModel } from 'ai';
-import { EvaliphyErrorCode, LLMJudgeConfig, logger } from 'evaliphy-core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { EvaliphyLLMClient } from '../../src/client/EvaliphyLLMClient.js';
+import {EvaliphyErrorCode, LLMJudgeConfig, logger} from "@evaliphy/core";
 
 vi.mock('ai', () => ({
   generateText: vi.fn().mockResolvedValue({
@@ -15,8 +15,8 @@ vi.mock('ai', () => ({
   }),
 }));
 
-vi.mock('evaliphy-core', async () => {
-  const actual = await vi.importActual('evaliphy-core') as any;
+vi.mock('@evaliphy/core', async () => {
+  const actual = await vi.importActual('@evaliphy/core') as any;
   return {
     ...actual,
     logger: {

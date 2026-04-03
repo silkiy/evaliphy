@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import { ConfigLoader } from 'evaliphy-core';
+import { ConfigLoader } from '@evaliphy/core';
 import { handleFatalError, parseCLI } from './config/cliConfigUtil.js';
 import { createProject } from "./initProject/createFolderStructure.js";
 import { runRegistry } from './runner/runEval.js';

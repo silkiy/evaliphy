@@ -1,4 +1,4 @@
-import { logger } from 'evaliphy-core';
+import { logger } from '@evaliphy/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createLLMClient } from '../../src/factory/createLLMClient.js';
 
@@ -14,8 +14,8 @@ vi.mock('../../src/providers/gateway.js', () => ({
   getGatewayProviderModel: vi.fn().mockReturnValue({}),
 }));
 
-vi.mock('evaliphy-core', async () => {
-  const actual = await vi.importActual('evaliphy-core') as any;
+vi.mock('@evaliphy/core', async () => {
+  const actual = await vi.importActual('@evaliphy/core') as any;
   return {
     ...actual,
     logger: {

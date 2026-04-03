@@ -1,4 +1,4 @@
-import type { IHttpClient } from 'evaliphy-core';
+import type { IHttpClient } from '@evaliphy/core';
 import { RequestBuilder } from './builder.js';
 import { composeMiddleware, createRetryMiddleware, createTimeoutMiddleware, loggingMiddleware } from './middleware.js';
 import { Transport } from './transport.js';

@@ -1,5 +1,5 @@
 {
-  "name": "evaliphy-assertions",
+  "name": "@evaliphy/assertions",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -8,8 +8,8 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "evaliphy-ai": "workspace:*",
-    "evaliphy-core": "workspace:*",
+    "@evaliphy/ai": "workspace:*",
+    "@evaliphy/core": "workspace:*",
     "zod": "^3.22.4"
   }
 }

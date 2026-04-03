@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from "evaliphy-core";
+import { EvaliphyError, EvaliphyErrorCode } from "@evaliphy/core";
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from "node:url";

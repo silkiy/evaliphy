@@ -1,6 +1,6 @@
-import { createLLMClient } from "evaliphy-ai";
-import type { ILLMClient } from 'evaliphy-core';
-import { ConfigLoader, EvaliphyError, EvaliphyErrorCode, getConfig, logger } from 'evaliphy-core';
+import { createLLMClient } from "@evaliphy/ai";
+import type { ILLMClient } from '@evaliphy/core';
+import { ConfigLoader, EvaliphyError, EvaliphyErrorCode, getConfig, logger } from '@evaliphy/core';
 import { AssertionEngine } from '../engine/AssertionEngine.js';
 import type { AssertionContext, AssertionOptions, EvalInput, EvalResult, EvaluationSample } from '../engine/types.js';
 import { ToBeCoherentMatcher } from '../matchers/core/toBeCoherent.js';

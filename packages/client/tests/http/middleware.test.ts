@@ -1,4 +1,4 @@
-import { EvaliphyError } from 'evaliphy-core';
+import { EvaliphyError } from '@evaliphy/core';
 import { describe, expect, it, vi } from 'vitest';
 import { composeMiddleware, createRetryMiddleware, createTimeoutMiddleware, loggingMiddleware } from '../../src/http/middleware.js';
 

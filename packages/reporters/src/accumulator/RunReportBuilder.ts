@@ -1,4 +1,4 @@
-import { EvaliphyConfig } from 'evaliphy-core';
+import { EvaliphyConfig } from '@evaliphy/core';
 
 export interface RunReport {
   meta: {

@@ -1,5 +1,5 @@
 import { LanguageModel } from "ai";
-import { LLMJudgeConfig, logger } from 'evaliphy-core';
+import { LLMJudgeConfig, logger } from '@evaliphy/core';
 import { EvaliphyLLMClient } from '../client/EvaliphyLLMClient.js';
 import { resolveApiKey } from '../providers/apiKey.js';
 import { getDirectProviderModel } from '../providers/direct.js';

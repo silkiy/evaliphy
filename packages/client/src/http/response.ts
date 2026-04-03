@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode, getResult } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode, getResult } from '@evaliphy/core';
 import { EvalResponse, StreamChunk, StreamResponse, Timings } from './types.js';
 
 export class EvalResponseImpl implements EvalResponse {

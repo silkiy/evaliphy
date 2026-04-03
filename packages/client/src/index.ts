@@ -1,6 +1,6 @@
 import { HttpClient } from './http/client.js';
 import { HttpClientConfig } from './http/types.js';
-import {LLMJudgeConfig} from "evaliphy-core";
+import {LLMJudgeConfig} from "@evaliphy/core";
 
 export { HttpClient } from './http/client.js';
 export * from './http/types.js';

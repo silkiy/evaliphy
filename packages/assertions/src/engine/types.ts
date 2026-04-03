@@ -1,4 +1,4 @@
-import type { EvaliphyConfig, ILLMClient } from 'evaliphy-core';
+import type { EvaliphyConfig, ILLMClient } from '@evaliphy/core';
 import { z } from 'zod';
 
 export interface EvalInput {

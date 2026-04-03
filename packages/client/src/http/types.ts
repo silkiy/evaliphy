@@ -1,4 +1,4 @@
-import type { Timings, EvalResponse, StreamResponse, StreamChunk, RequestOptions } from 'evaliphy-core';
+import type { Timings, EvalResponse, StreamResponse, StreamChunk, RequestOptions } from '@evaliphy/core';
 
 export interface HttpClientConfig {
   baseUrl: string

@@ -10,7 +10,7 @@ import {
   TestRetryPayload,
   TestStartPayload,
   emitter
-} from 'evaliphy-core';
+} from '@evaliphy/core';
 import { RunReport, RunReportBuilder, RunResult } from './RunReportBuilder.js';
 
 export type OnCompleteCallback = (report: RunReport) => Promise<void>;

@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode, LLMProvider, logger } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode, LLMProvider, logger } from '@evaliphy/core';
 
 export function resolveApiKey(provider: LLMProvider): string {
   logger.debug({ providerType: provider.type }, 'Resolving API key');

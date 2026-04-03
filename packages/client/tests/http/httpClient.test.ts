@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { HttpClient } from '../../src/http/client.js';
 

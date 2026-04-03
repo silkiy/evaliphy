@@ -1,11 +1,11 @@
-import { getConfig } from 'evaliphy-core';
+import { getConfig } from '@evaliphy/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AssertionEngine } from '../../src/engine/AssertionEngine.js';
 import type { EvalInput, EvaluationSample } from '../../src/engine/types.js';
 import { expect as evaliphyExpect } from '../../src/expect/expect.js';
 
-// Mock evaliphy-ai BEFORE importing expect
-vi.mock('evaliphy-ai', () => ({
+// Mock @evaliphy/ai BEFORE importing expect
+vi.mock('@evaliphy/ai', () => ({
   createLLMClient: vi.fn().mockReturnValue({
     generateObject: vi.fn(),
     generateText: vi.fn(),
@@ -18,8 +18,8 @@ vi.mock('../../src/engine/AssertionEngine.js', () => ({
   },
 }));
 
-vi.mock('evaliphy-core', async () => {
-  const actual = await vi.importActual('evaliphy-core');
+vi.mock('@evaliphy/core', async () => {
+  const actual = await vi.importActual('@evaliphy/core');
   return {
     ...actual,
     getConfig: vi.fn(),

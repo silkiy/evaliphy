@@ -1,4 +1,4 @@
-import { EvaliphyError } from 'evaliphy-core';
+import { EvaliphyError } from '@evaliphy/core';
 import fs from 'node:fs';
 import { describe, expect, it, vi } from 'vitest';
 import { PromptLoader } from '../../src/promptManager/promptLoader.js';

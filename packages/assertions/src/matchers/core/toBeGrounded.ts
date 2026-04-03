@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
 import type { EvalInput } from '../../engine/types.js';
 import type { AssertionDefinition } from '../../registry.js';
 import { BaseLLMMatcher, createLLMDefinition } from '../base/BaseLLMMatcher.js';

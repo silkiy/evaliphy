@@ -1,4 +1,4 @@
-import { EvaliphyConfig, EvaliphyError } from "evaliphy-core";
+import { EvaliphyConfig, EvaliphyError } from "@evaliphy/core";
 
 export function parseCLI(opts: Record<string, any>): EvaliphyConfig {
     const config: EvaliphyConfig = {};

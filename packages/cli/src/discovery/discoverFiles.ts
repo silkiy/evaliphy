@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode, logger } from 'evaliphy-core';
+import { EvaliphyError, EvaliphyErrorCode, logger } from '@evaliphy/core';
 import fg from 'fast-glob';
 import fs from 'fs';
 import path from 'path';
