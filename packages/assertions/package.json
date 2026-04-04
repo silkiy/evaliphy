@@ -7,6 +7,10 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "files": [
+    "dist",
+    "prompts"
+  ],
   "dependencies": {
     "@evaliphy/ai": "workspace:*",
     "@evaliphy/core": "workspace:*",

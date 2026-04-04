@@ -10,6 +10,7 @@ export default defineConfig([
     format: ['esm', 'cjs'],
     dts: true,
     clean: true,
+    publicDir: 'packages/assertions/prompts',
     // Inline these — they get bundled INTO dist/index.js
     noExternal: [
       /^evaliphy-/,           // all workspace packages

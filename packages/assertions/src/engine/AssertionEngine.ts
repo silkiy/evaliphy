@@ -1,5 +1,6 @@
 import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { BaseMatcher } from '../matchers/base/BaseMatcher.js';
 import { PromptLoader } from '../promptManager/promptLoader.js';
 import { PromptRenderer } from '../promptManager/promptRenderer.js';
@@ -78,19 +79,38 @@ export class AssertionEngine {
 
   private static loadPrompt(matcherName: string, assertionDef: any, config: any) {
     const configDir = config.configFile ? path.dirname(config.configFile) : process.cwd();
+
+    // 1. Check for custom prompts directory from config
     const customPromptsDir = config.llmAsJudgeConfig?.promptsDir
       ? path.resolve(configDir, config.llmAsJudgeConfig.promptsDir)
       : null;
 
-    const defaultPromptsDir = path.join(process.cwd(), 'packages/prompts');
-    let promptPath = customPromptsDir ? path.join(customPromptsDir, `${matcherName}.md`) : null;
+    // 2. Check for default prompts directory in consumer's root (convention)
+    const localPromptsDir = path.join(process.cwd(), 'prompts');
+
+    // 3. SDK internal prompts directory
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    
+    // Support both source (../../prompts) and bundled dist (./prompts)
+    const sdkPromptsDirSource = path.resolve(__dirname, '../../prompts');
+    const sdkPromptsDirDist = path.resolve(__dirname, './prompts');
+
+    const searchPaths = [
+      customPromptsDir ? path.join(customPromptsDir, `${matcherName}.md`) : null,
+      path.join(localPromptsDir, `${matcherName}.md`),
+      path.join(sdkPromptsDirDist, `${matcherName}.md`),
+      path.join(sdkPromptsDirSource, `${matcherName}.md`),
+    ].filter(Boolean) as string[];
 
     try {
-      if (promptPath && PromptLoader.exists(promptPath)) {
-        return PromptLoader.load(promptPath, assertionDef);
+      for (const promptPath of searchPaths) {
+        if (PromptLoader.exists(promptPath)) {
+          return PromptLoader.load(promptPath, assertionDef);
+        }
       }
-      promptPath = path.join(defaultPromptsDir, `${matcherName}.md`);
-      return PromptLoader.load(promptPath, assertionDef);
+
+      // If none found, try the primary SDK path one last time to trigger the standard error
+      return PromptLoader.load(path.join(sdkPromptsDirDist, `${matcherName}.md`), assertionDef);
     } catch (error: any) {
       throw new EvaliphyError(
         EvaliphyErrorCode.PROMPT_LOAD_ERROR,
