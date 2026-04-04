@@ -3,7 +3,7 @@ Get up and running with Evaliphy in minutes.
 Prerequisites
 Before you start, make sure you have:
 
-- Node.js 18 or higher
+- **Node.js 24 or higher**
 - An OpenAI API key (or any OpenAI-compatible provider)
 - A running RAG application with an HTTP endpoint
 
@@ -112,20 +112,23 @@ Print results to the console
 Write a full report to the report/ directory
 
 
-What a passing run looks like
+What a passing run looks like:
 ```bash  
   ✓  answer quality — toBeRelevant    (score: 0.91)
   ✓  answer quality — toBeFaithful    (score: 0.87)
 
   2 passed, 0 failed
-  Report written to report/report-[runId].json
-What a failing run looks like
-bash  ✓  answer quality — toBeRelevant    (score: 0.91)
+  Report written to report/report-[runId].html
+
+What a failing run looks like:
+
+```bash  
+  ✓  answer quality — toBeRelevant    (score: 0.91)
   ✗  answer quality — toBeFaithful    (score: 0.52)
        The response introduces information not found in the retrieved context.
 
   1 passed, 1 failed
-  Report written to results/evaliphy-run-20240402.json
+  Report written to results/report-[runId].html
 ```
 
 When an assertion fails, Evaliphy tells you the score, the threshold it was measured against, and the judge's reasoning in plain English — so you know exactly what to fix.

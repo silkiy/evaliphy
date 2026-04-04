@@ -9,45 +9,13 @@ The `ConsoleReporter` is the default reporter. It provides a clean, streamed out
 - **Detailed failures**: Clear error messages, codes, and hints to help you debug.
 - **Run summary**: A final overview of pass/fail counts and total duration.
 
-### Configuration
+## HTML Reporter
 
-You can customize the console output in your `evaliphy.config.ts`:
+The `HtmlReporter` generates a standalone, interactive HTML report that is perfect for sharing with your team or reviewing in a browser. It includes:
+- **Visual Summary**: A high-level overview of the entire run.
+- **Detailed Results Table**: A filterable table showing every test case, its score, and the judge's reasoning.
+- **Failure Deep-Dive**: Detailed views for failed assertions, including the original query, response, and context.
 
-```ts
-import { defineConfig } from 'evaliphy';
-import { ConsoleReporter } from 'evaliphy/reporters';
+By default, Evaliphy uses the `ConsoleReporter`. You can enable the `HtmlReporter` in your configuration to generate visual reports for every run.
 
-export default defineConfig({
-  reporters: [
-    new ConsoleReporter({
-      verbose: false,      // Show detailed logs and stack traces
-      showSlowAt: 1000,    // Highlight tests slower than 1000ms in yellow
-      compact: false       // One-line per test, hides failure details inline
-    })
-  ]
-});
-```
-
-## Custom Reporters
-
-If you need to integrate Evaliphy with your own tools (e.g., sending results to a database or a custom dashboard), you can implement your own reporter.
-
-### Example
-
-```ts
-import { EvaliphyReporter, TestPassPayload } from 'evaliphy';
-
-class MyCustomReporter implements EvaliphyReporter {
-  name = 'my-custom-reporter';
-
-  onTestPass(payload: TestPassPayload) {
-    console.log(`Test ${payload.testName} passed!`);
-  }
-}
-```
-
-## Default Behavior
-
-- **Automatic**: If you don't configure any reporters, Evaliphy uses the `ConsoleReporter` by default.
-- **Opt-out**: To disable all output, provide an empty array: `reporters: []`.
-- **Override**: If you provide custom reporters, the default console reporter is disabled unless you explicitly include it in the `reporters` list.
+![HTML Report Example](/images/report.png)

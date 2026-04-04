@@ -1,11 +1,11 @@
-import { EvaliphyError, EvaliphyErrorCode } from "@evaliphy/core";
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-import { pathToFileURL } from "node:url";
-import { logger } from "../logger.js";
-import { mergeConfigs } from "./mergeConfig.js";
-import { EvaliphyConfigSchema } from "./schema.js";
-import { EvaliphyConfig } from "./types.js";
+import {EvaliphyError, EvaliphyErrorCode} from "@evaliphy/core";
+import {existsSync} from 'node:fs';
+import {join} from 'node:path';
+import {pathToFileURL} from "node:url";
+import {logger} from "../logger.js";
+import {mergeConfigs} from "./mergeConfig.js";
+import {EvaliphyConfigSchema} from "./schema.js";
+import {EvaliphyConfig} from "./types.js";
 
 const G = globalThis as any;
 
@@ -13,11 +13,12 @@ export class ConfigLoader {
   private static get instance(): ConfigLoader {
     return G.__EVALIPHY_CONFIG_LOADER_INSTANCE__;
   }
+
   private static set instance(value: ConfigLoader) {
     G.__EVALIPHY_CONFIG_LOADER_INSTANCE__ = value;
   }
 
-  private configLogger = logger.child({ module: 'ConfigLoader' })
+  private configLogger = logger.child({module: 'ConfigLoader'})
   private cachedConfig: EvaliphyConfig | null = null;
   private cliOverrides: EvaliphyConfig = {};
 
@@ -28,7 +29,8 @@ export class ConfigLoader {
     'evaliphy.config.cjs',
   ];
 
-  private constructor() {}
+  private constructor() {
+  }
 
   /**
    * Initializes the ConfigLoader with CLI overrides.
@@ -38,7 +40,7 @@ export class ConfigLoader {
     if (!ConfigLoader.instance) {
       ConfigLoader.instance = new ConfigLoader();
     }
-    ConfigLoader.instance.configLogger.debug({ cliOverrides }, 'Initializing with CLI overrides');
+    ConfigLoader.instance.configLogger.debug({cliOverrides}, 'Initializing with CLI overrides');
     ConfigLoader.instance.cliOverrides = cliOverrides;
     ConfigLoader.instance.clearCache();
     return ConfigLoader.instance;
@@ -69,12 +71,12 @@ export class ConfigLoader {
       if (existsSync(fullPath)) return fullPath;
     }
 
-    this.configLogger.debug({ cwd }, 'Searching for default config files');
+    this.configLogger.debug({cwd}, 'Searching for default config files');
     for (const file of this.configFiles) {
       const fullPath = join(cwd, file);
       if (existsSync(fullPath)) {
-          this.configLogger.debug({ file, fullPath }, 'Found config file');
-          return fullPath;
+        this.configLogger.debug({file, fullPath}, 'Found config file');
+        return fullPath;
       }
     }
     return null;
@@ -90,13 +92,19 @@ export class ConfigLoader {
       this.configLogger.debug('No config file found, using defaults if applicable');
       throw new EvaliphyError(
         EvaliphyErrorCode.INVALID_CONFIG,
-        "Provided config file is not correct or does not exist."
+        `Could not load configuration. Please check the following:
+
+  - Does "evaliphy.config.ts" exist in your project root?
+  - Is the path correct if you specified a custom config location?
+  - Does the config file export a default defineConfig({}) call?
+
+  Expected location: ${process.cwd()}/evaliphy.config.ts
+  Visit https://evaliphy.com/docs/configuration for more details.`
       );
     }
-
     // If we don't have a cached base config, load and parse it
     if (!this.cachedConfig) {
-      this.configLogger.debug({ configPath }, 'Loading base configuration from file');
+      this.configLogger.debug({configPath}, 'Loading base configuration from file');
       try {
         const fileUrl = pathToFileURL(configPath).href;
         const mod = await import(fileUrl);
@@ -108,7 +116,10 @@ export class ConfigLoader {
           this.configLogger.error({ error: parsed.error, configPath }, 'Configuration validation failed');
           throw new EvaliphyError(
             EvaliphyErrorCode.INVALID_CONFIG,
-            `Invalid configuration in ${configPath}: ${parsed.error.message}`
+            `Invalid configuration in ${configPath}
+
+            Please check your evaliphy.config.ts and fix the above fields.
+            Docs: https://evaliphy.com/docs/configuration`
           );
         }
 
@@ -120,12 +131,16 @@ export class ConfigLoader {
         );
         this.cachedConfig.configFile = configPath;
       } catch (error: any) {
-        this.configLogger.error({ error, configPath }, 'Error loading configuration');
+        this.configLogger.error({error, configPath}, 'Error loading configuration');
         if (error instanceof EvaliphyError) throw error;
-        throw new EvaliphyError(
-          EvaliphyErrorCode.INVALID_CONFIG,
-          `Failed to load config from ${configPath}: ${error.message}`
-        );
+          throw new EvaliphyError(
+            EvaliphyErrorCode.INVALID_CONFIG,
+            `Failed to load config from ${configPath}: ${error.message}
+
+            Please check your evaliphy.config.ts and fix the above fields.
+              Docs: https://evaliphy.com/docs/configuration
+              `
+          );
       }
     }
 
@@ -136,7 +151,10 @@ export class ConfigLoader {
       {},
     );
 
-    this.configLogger.debug({ config: finalConfig, hasTransient: Object.keys(transientOverrides).length > 0 }, 'Final merged configuration');
+    this.configLogger.debug({
+      config: finalConfig,
+      hasTransient: Object.keys(transientOverrides).length > 0
+    }, 'Final merged configuration');
     return finalConfig;
   }
 

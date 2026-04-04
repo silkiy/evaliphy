@@ -9,6 +9,23 @@ interface DocPageProps {
   }>;
 }
 
+const components = {
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = props.children?.toString()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return <h2 {...props} id={id} />;
+  },
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = props.children?.toString()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return <h3 {...props} id={id} />;
+  },
+};
+
 export default async function DocPage({ params }: DocPageProps) {
   const { slug } = await params;
   const content = await getDocBySlug(slug);
@@ -21,6 +38,7 @@ export default async function DocPage({ params }: DocPageProps) {
     <div className="prose prose-zinc max-w-none prose-headings:scroll-mt-20 prose-headings:font-bold prose-a:text-zinc-900 prose-a:no-underline hover:prose-a:underline prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800">
       <MDXRemote
         source={content}
+        components={components}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm],

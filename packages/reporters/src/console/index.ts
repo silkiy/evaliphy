@@ -111,9 +111,10 @@ export class ConsoleReporter implements EvaliphyReporter {
     console.log('\n' + this.getSeparator());
     
     const summary = [
-      pc.bold('Tests:   ') + (payload.failed > 0 ? pc.red(`${payload.failed} failed`) + pc.dim(', ') : '') + pc.green(`${payload.passed} passed`) + pc.dim(`, ${total} total`),
-      pc.bold('Time:    ') + pc.white(duration),
-      pc.bold('Run ID:  ') + pc.dim(payload.runId)
+      pc.bold('Tests:       ') + (payload.failed > 0 ? pc.red(`${payload.failed} failed`) + pc.dim(', ') : '') + pc.green(`${payload.passed} passed`) + pc.dim(`, ${total} total`),
+      pc.bold('Time:        ') + pc.white(duration),
+      pc.bold('Run ID:      ') + pc.dim(payload.runId),
+      pc.bold('HTML Report: ') + pc.dim('report/report-' + payload.runId + '.html')
     ];
 
     summary.forEach(line => console.log(` ${line}`));

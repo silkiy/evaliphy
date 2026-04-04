@@ -16,10 +16,22 @@ export function Header() {
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link
+              href="/docs/understanding-RAG-testing"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              RAG Testing Guide
+            </Link>
+            <Link
               href="/docs/introduction"
               className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
             >
               Documentation
+            </Link>
+            <Link
+              href="/docs/llm-as-judge"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              LLM As Judge
             </Link>
             <Link
               href="/docs/assertions-api"
@@ -64,11 +76,25 @@ export function Header() {
         <div className="md:hidden border-t border-zinc-100 bg-white p-4 space-y-4">
           <nav className="flex flex-col gap-4">
             <Link
+              href="/docs/understanding-RAG-testing"
+              className="text-base font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              RAG Testing Guide
+            </Link>
+            <Link
               href="/docs/introduction"
               className="text-base font-medium text-zinc-600 transition-colors hover:text-zinc-900"
               onClick={() => setIsMenuOpen(false)}
             >
               Documentation
+            </Link>
+            <Link
+              href="/docs/llm-as-judge"
+              className="text-base font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              LLM As Judge
             </Link>
             <Link
               href="/docs/assertions-api"

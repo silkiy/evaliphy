@@ -1,6 +1,6 @@
 # HTTP Client
 
-Evaliphy provides a built-in HTTP client fixture to simplify calling your RAG application's API. It's a higher-level interface over the native Fetch API, automatically handling retries, timeouts, and logging.
+Evaliphy provides a built-in HTTP client fixture to simplify calling your RAG application's API. It's a higher-level interface over the native Fetch API, automatically handling retries, timeouts, and session management.
 
 ## Usage in Evaluations
 
@@ -19,61 +19,71 @@ evaluate('My RAG Test', async ({ httpClient }) => {
 });
 ```
 
-## Methods
+## Non-Streaming Requests
 
-### `post(url, payload, options?)`
-Sends a POST request. The payload is automatically serialized to JSON.
+For standard JSON APIs, use the standard HTTP methods. These return an `EvalResponse` object.
+
+### Methods
+- `httpClient.get(url, options?)`
+- `httpClient.post(url, payload, options?)`
+- `httpClient.put(url, payload, options?)`
+- `httpClient.patch(url, payload, options?)`
+- `httpClient.delete(url, options?)`
+
+### Handling the Response
+The `EvalResponse` object provides easy access to the response data and metadata:
 
 ```typescript
-const response = await httpClient.post('/api/v1/query', { text: "Hello" });
+const res = await httpClient.post('/chat', payload);
+
+await res.json();       // Parsed JSON body
+await res.text();       // Raw text body
+res.status;             // HTTP status code
+res.headers;            // Response headers
+res.timings.ttfb;       // Time to first byte (ms)
+res.timings.total;      // Total request duration (ms)
 ```
 
-### `get(url, options?)`
-Sends a GET request.
+## Streaming Requests (Unstable)
+
+> ⚠️ **Warning**: Streaming support is currently unstable and may undergo significant changes in future beta releases.
+
+For LLM completions or Server-Sent Events (SSE), use the `stream` method. It returns a `StreamResponse` which is an async iterable.
 
 ```typescript
-const response = await httpClient.get('/api/v1/status');
-```
+const stream = await httpClient.stream('/chat', { query: "..." });
 
-### `put(url, payload, options?)`
-Sends a PUT request.
-
-### `patch(url, payload, options?)`
-Sends a PATCH request.
-
-### `delete(url, options?)`
-Sends a DELETE request.
-
-### `stream(url, payload, options?)`
-Initiates a streaming request, suitable for LLM completions or Server-Sent Events (SSE). Returns an async iterator.
-
-```typescript
-const stream = await httpClient.stream('/api/v1/chat/stream', { query: "..." });
 for await (const chunk of stream) {
-  console.log(chunk);
+  console.log(chunk.text); // Access the text content of the chunk
 }
+
+// You can also collect the entire stream into a single string
+const fullText = await stream.collect();
 ```
 
-## Handling Responses
-
-The `httpClient` methods return an `EvalResponse` object.
-
-- `response.json()`: Parses the response body as JSON.
-- `response.text()`: Returns the response body as text.
-- `response.status`: The HTTP status code.
-- `response.ok`: Boolean indicating if the request was successful (status 200-299).
-- `response.headers`: The response headers.
+The `StreamResponse` also includes timing information:
+- `stream.timings.ttfb`: Time to first byte.
+- `stream.timings.streamEnd`: Time until the last chunk was received.
 
 ## Session Management
 
-Use `withSession` to create a scoped client that includes a specific session header, useful for multi-turn conversations.
+Use `withSession` to create a scoped client that automatically includes a session identifier in every request. This is essential for testing multi-turn conversations.
 
 ```typescript
-const sessionClient = httpClient.withSession('X-Session-ID', 'user-123');
-await sessionClient.post('/chat', { message: "First turn" });
-await sessionClient.post('/chat', { message: "Second turn" });
+const session = httpClient.withSession('abc-123');
+
+await session.post('/chat', { message: "First turn" });
+await session.post('/chat', { message: "Second turn" }); // Still uses 'abc-123'
 ```
 
-## Configuration
+## Request Options
 
-The HTTP client is configured via the `http` property in `evaliphy.config.ts`. See the [Configuration](/docs/configuration) page for details.
+Every request method accepts an optional `RequestOptions` object to override global settings:
+
+```typescript
+await httpClient.post('/chat', payload, {
+  timeout: 10000,
+  headers: { 'X-Custom-Header': 'value' },
+  retry: { attempts: 3, delay: 500 }
+});
+```

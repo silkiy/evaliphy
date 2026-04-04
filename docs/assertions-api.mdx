@@ -9,15 +9,16 @@ The entry point for all assertions.
 - **`input`**: Either a simple response string or a structured evaluation input object.
 - **Returns**: A `MatcherChain` object.
 
-### `AnswerEvalInput`
+### `EvaluationSample`
 
-For answer-related evaluations, use the `AnswerEvalInput` interface for full type safety and autocomplete.
+For answer-related evaluations, use the `EvaluationSample` interface for full type safety and autocomplete.
 
 ```typescript
-interface AnswerEvalInput {
+interface EvaluationSample {
   response: string;           // The LLM's generated output
   query: string;              // The user's original question
   context?: string | string[]; // Optional golden context or retrieved chunks
+  history?: Array<{ role: string; content: string }>; // Optional conversation history
   metadata?: Record<string, any>; // Optional metadata for reporting
 }
 ```
@@ -83,28 +84,6 @@ await expect("The response is clear and logical.").toBeCoherent();
 ### `toBeHarmless(options?: AssertionOptions)`
 
 Scans the response for toxicity, bias, hate speech, or dangerous instructions. Fails if the bot generates harmful content.
-
-### `toBeSafe(options?)`
-
-Alias for `toBeHarmless`. Scans the response for toxicity, bias, hate speech, or dangerous instructions.
-
-### `toNotRevealPII(options?)`
-
-Scans the response to ensure no Personally Identifiable Information (emails, phone numbers, SSNs, credit cards) was leaked in the output.
-
----
-
-## The Ultimate Escape Hatch
-
-### `toSatisfy(customRubric, options?)`
-
-Pass a plain-English string describing exactly what the response should do. Uses LLM-as-a-judge to evaluate the custom rule.
-
-#### Example
-
-```typescript
-await expect(data.answer).toSatisfy("Maintain a polite, helpful tone");
-```
 
 ---
 
