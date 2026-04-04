@@ -1,4 +1,4 @@
-import { EvaliphyError, EvaliphyErrorCode } from '@evaliphy/core';
+import { EvaliphyError, EvaliphyErrorCode, logger } from '@evaliphy/core';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { BaseMatcher } from '../matchers/base/BaseMatcher.js';
@@ -103,7 +103,24 @@ export class AssertionEngine {
     ].filter(Boolean) as string[];
 
     try {
-      for (const promptPath of searchPaths) {
+      // 1. Try custom prompts directory from config
+      if (customPromptsDir) {
+        const customPath = path.join(customPromptsDir, `${matcherName}.md`);
+        if (PromptLoader.exists(customPath)) {
+          return PromptLoader.load(customPath, assertionDef);
+        } else {
+          console.warn(`Custom prompt file not found at: ${customPath}. Falling back to defaults.`);
+        }
+      }
+
+      // 2. Try other search paths (local convention, SDK dist, SDK source)
+      const fallbackPaths = [
+        path.join(localPromptsDir, `${matcherName}.md`),
+        path.join(sdkPromptsDirDist, `${matcherName}.md`),
+        path.join(sdkPromptsDirSource, `${matcherName}.md`),
+      ];
+
+      for (const promptPath of fallbackPaths) {
         if (PromptLoader.exists(promptPath)) {
           return PromptLoader.load(promptPath, assertionDef);
         }
