@@ -34,8 +34,8 @@ evaluate("Return Policy Chat", async ({ httpClient }) => {
   const data = await res.json();
 
   // 2. Assert against the LLM's behavior in plain English
-  await expect(data.answer).toBeFaithful({threshold:0.8});
-  await expect(data.answer).toBeRelevant();
+  await expect({sample.query, data.answer, sample.expectedContext}).toBeFaithful({threshold:0.8});
+  await expect({sample.query, data.answer, sample.expectedContext}).toBeRelevant();
 });
 ```
 
