@@ -29,8 +29,30 @@ evaluate("Return Policy Chat", async ({ httpClient }) => {
 });`;
 
 export default async function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Evaliphy",
+    "operatingSystem": "Node.js",
+    "applicationCategory": "DeveloperApplication",
+    "description": "Evaliphy is the end-to-end RAG evaluation framework for QA engineers. Write assertions in TypeScript, test your real API, get structured reports.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Evaliphy"
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
@@ -66,20 +88,6 @@ export default async function Home() {
                 </Link>
               </div>
 
-              <a
-                href="https://www.producthunt.com/products/evaliphy?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-evaliphy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1116079&theme=dark&t=1775371542211"
-                  alt="Evaliphy - E2E RAG testing for QA engineers | No ML overhead | Product Hunt"
-                  width="250"
-                  height="54"
-                  className="w-[250px] h-[54px]"
-                />
-              </a>
             </div>
           </div>
 
@@ -157,7 +165,7 @@ export default async function Home() {
                 Understandable Metrics
               </h3>
               <p className="text-zinc-600 leading-relaxed">
-                Forget "Contextual Precision" and "Cosine Similarity." Assert
+                Forget {"\""}Contextual Precision{"\""} and {"\""}Cosine Similarity.{"\""} Assert
                 against what actually matters:
                 <code className="mx-1 text-zinc-900 font-mono text-sm">
                   toBeFaithful()
@@ -219,7 +227,7 @@ export default async function Home() {
               </h3>
               <p className="text-zinc-600 leading-relaxed">
                 We spent hundreds of hours benchmarking LLM-as-a-judge prompts
-                so you don't have to. Just provide your API key, and Evaliphy
+                so you don{"'"}t have to. Just provide your API key, and Evaliphy
                 handles the prompting, parsing, and retry logic.
               </p>
             </div>

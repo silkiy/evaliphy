@@ -39,6 +39,12 @@ export function Header() {
             >
               API Reference
             </Link>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              Blog
+            </Link>
           </nav>
         </div>
 
@@ -102,6 +108,13 @@ export function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               API Reference
+            </Link>
+            <Link
+              href="/blog"
+              className="text-base font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Blog
             </Link>
           </nav>
         </div>

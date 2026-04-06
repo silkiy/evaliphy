@@ -14,8 +14,70 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Evaliphy | QA-First RAG Evaluation Framework",
-  description: "Evaliphy is the end-to-end RAG evaluation framework for QA engineers. Write assertions in TypeScript, test your real API, get structured reports. No ML background required.",
+  metadataBase: new URL("https://evaliphy.com"),
+  title: {
+    default: "Evaliphy | QA-First RAG Evaluation Framework",
+    template: "%s | Evaliphy",
+  },
+  description:
+    "Evaliphy is the end-to-end RAG evaluation framework for QA engineers. Write assertions in TypeScript, test your real API, get structured reports. No ML background required.",
+  keywords: [
+    "RAG evaluation",
+    "LLM testing",
+    "QA engineering",
+    "AI testing framework",
+    "RAG observability",
+    "LLM as a judge",
+    "TypeScript",
+    "Node.js",
+  ],
+  authors: [{ name: "Evaliphy Team" }],
+  creator: "Evaliphy",
+  publisher: "Evaliphy",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://evaliphy.com",
+    siteName: "Evaliphy",
+    title: "Evaliphy | QA-First RAG Evaluation Framework",
+    description:
+      "The end-to-end RAG evaluation framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
+    images: [
+      {
+        url: "/images/report.png",
+        width: 1200,
+        height: 630,
+        alt: "Evaliphy Evaluation Report",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evaliphy | QA-First RAG Evaluation Framework",
+    description:
+      "The end-to-end RAG evaluation framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
+    images: ["/images/report.png"],
+    creator: "@evaliphy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "EE5iEfQ7-Rh-VFtGGyswlapyYuVtps-1JgNx4dz6ppY",
+  },
 };
 
 export default function RootLayout({
