@@ -17,13 +17,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://evaliphy.com"),
   title: {
-    default: "Evaliphy | QA-First RAG Evaluation Framework",
+    default: "Evaliphy | QA-First RAG Testing Framework",
     template: "%s | Evaliphy",
   },
   description:
-    "Evaliphy is the end-to-end RAG evaluation framework for QA engineers. Write assertions in TypeScript, test your real API, get structured reports. No ML background required.",
+    "Evaliphy is the end-to-end RAG Testing framework for QA engineers. Write assertions in TypeScript, test your real API, get structured reports. No ML background required.",
   keywords: [
     "RAG evaluation",
+    "RAG Testing",
     "LLM testing",
     "QA engineering",
     "AI testing framework",
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://evaliphy.com",
     siteName: "Evaliphy",
-    title: "Evaliphy | QA-First RAG Evaluation Framework",
+    title: "Evaliphy | QA-First RAG Testing Framework",
     description:
-      "The end-to-end RAG evaluation framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
+      "The end-to-end RAG testing framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
     images: [
       {
         url: "/images/report.png",
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Evaliphy | QA-First RAG Evaluation Framework",
+    title: "Evaliphy | QA-First RAG Testing Framework",
     description:
-      "The end-to-end RAG evaluation framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
+      "The end-to-end RAG testing framework for QA engineers. Assertions, real API calls, CI reports. No ML required.",
     images: ["/images/report.png"],
     creator: "@evaliphy",
   },
