@@ -81,7 +81,7 @@ export default async function Home() {
                   Get Started
                 </Link>
                 <Link
-                  href="https://github.com/priyanshus/evaliphy"
+                  href="https://github.com/Evaliphy/evaliphy"
                   className="px-8 py-3 border border-zinc-200 text-zinc-900 rounded-lg font-medium hover:bg-zinc-50 transition-colors"
                 >
                   View on GitHub
@@ -327,7 +327,7 @@ export default async function Home() {
               Get Started Now
             </Link>
             <Link
-              href="https://github.com/priyanshus/evaliphy"
+              href="https://github.com/Evaliphy/evaliphy"
               className="px-8 py-3 border border-zinc-700 text-white rounded-lg font-medium hover:bg-zinc-800 transition-colors"
             >
               Star on GitHub

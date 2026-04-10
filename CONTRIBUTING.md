@@ -30,7 +30,7 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 
 ## Development Setup
 
-1.  Clone the repository: `git clone https://github.com/priyanshus/evaliphy.git`
+1.  Clone the repository: `git clone https://github.com/Evaliphy/evaliphy.git`
 2.  Install dependencies: `pnpm install`
 3.  Build the project: `pnpm build`
 4.  Run tests: `pnpm test`

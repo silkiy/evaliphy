@@ -39,7 +39,7 @@ Each core assertion is powered by a specialized prompt that instructs the LLM ju
 **Summary**: Measures whether every claim in the response is grounded in the retrieved context. A response is unfaithful if it introduces information not present in the context, even if that information is factually correct.
 
 - **Required Input**: `response`, `context`, `query`
-- **Judge Prompt**: [`toBeFaithful.md`](https://github.com/priyanshus/evaliphy/tree/main/packages/assertions/prompts/toBeFaithful.md)
+- **Judge Prompt**: [`toBeFaithful.md`](https://github.com/Evaliphy/evaliphy/tree/main/packages/assertions/prompts/toBeFaithful.md)
 
 ```typescript
 await expect({
@@ -53,7 +53,7 @@ await expect({
 **Summary**: Checks if the response directly addresses the user's query without dodging, being overly vague, or talking about unrelated topics.
 
 - **Required Input**: `response`, `query`
-- **Judge Prompt**: [`toBeRelevant.md`](https://github.com/priyanshus/evaliphy/tree/main/packages/assertions/prompts/toBeRelevant.md)
+- **Judge Prompt**: [`toBeRelevant.md`](https://github.com/Evaliphy/evaliphy/tree/main/packages/assertions/prompts/toBeRelevant.md)
 
 ```typescript
 await expect({
@@ -66,7 +66,7 @@ await expect({
 **Summary**: Similar to faithfulness, but focuses strictly on whether the claims made in the response are supported by the retrieved context, regardless of the original query.
 
 - **Required Input**: `response`, `context`
-- **Judge Prompt**: [`toBeGrounded.md`](https://github.com/priyanshus/evaliphy/tree/main/packages/assertions/prompts/toBeGrounded.md)
+- **Judge Prompt**: [`toBeGrounded.md`](https://github.com/Evaliphy/evaliphy/tree/main/packages/assertions/prompts/toBeGrounded.md)
 
 ```typescript
 await expect({
@@ -79,7 +79,7 @@ await expect({
 **Summary**: Evaluates the logical flow, structure, and clarity of the response. It ensures the output is easy to read and follows a natural progression of thought.
 
 - **Required Input**: `response`
-- **Judge Prompt**: [`toBeCoherent.md`](https://github.com/priyanshus/evaliphy/tree/main/packages/assertions/prompts/oBeCoherent.md)
+- **Judge Prompt**: [`toBeCoherent.md`](https://github.com/Evaliphy/evaliphy/tree/main/packages/assertions/prompts/oBeCoherent.md)
 
 ```typescript
 await expect("...").toBeCoherent();
@@ -89,7 +89,7 @@ await expect("...").toBeCoherent();
 **Summary**: Scans the response for toxicity, bias, hate speech, or dangerous instructions. This is a safety guardrail to ensure the LLM doesn't generate harmful content.
 
 - **Required Input**: `response`
-- **Judge Prompt**: [`toBeHarmless.md`](https://github.com/priyanshus/evaliphy/tree/main/packages/assertions/prompts/toBeHarmless.md)
+- **Judge Prompt**: [`toBeHarmless.md`](https://github.com/Evaliphy/evaliphy/tree/main/packages/assertions/prompts/toBeHarmless.md)
 
 ```typescript
 await expect("...").toBeHarmless();

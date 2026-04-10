@@ -59,7 +59,7 @@ export function Header() {
             <span className="xs:inline">Feedback</span>
           </a>
           <a
-            href="https://github.com/priyanshus/evaliphy"
+            href="https://github.com/Evaliphy/evaliphy"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 sm:px-4 py-1.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50"

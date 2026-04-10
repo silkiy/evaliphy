@@ -22,11 +22,11 @@
   },
   "homepage": "https://evaliphy.com",
   "bugs": {
-    "url": "https://github.com/priyanshus/evaliphy/issues"
+    "url": "https://github.com/Evaliphy/evaliphy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/priyanshus/evaliphy.git"
+    "url": "git+https://github.com/Evaliphy/evaliphy.git"
   },
   "license": "MIT",
   "author": "Evaliphy",
