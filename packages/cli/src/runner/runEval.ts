@@ -239,10 +239,15 @@ export async function runRegistry(explicitFile?: string): Promise<void> {
     // Discover tests across all selected files for reporting
     let totalTests = 0;
     if (explicitFile) {
-        // For a single file, we can just import it once to get the count
+        const evalDir = path.dirname(path.resolve(process.cwd(), explicitFile));
+        await emitter.emit('discovery:start', { runId, dir: evalDir });
+
         clearRegistry();
         await importEvalFile(filesToRun[0]);
         totalTests = getRegistry().length;
+
+        await emitter.emit('discovery:file', { runId, file: filesToRun[0], testCount: totalTests });
+        await emitter.emit('discovery:end', { runId, fileCount: 1, totalTests });
 
         if (totalTests === 0) {
             throw new EvaliphyError(
