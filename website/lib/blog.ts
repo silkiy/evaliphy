@@ -9,6 +9,7 @@ export interface BlogPost {
   description: string;
   author: string;
   content: string;
+  image?: string;
 }
 
 const blogDir = path.join(process.cwd(), "..", "docs", "blog-posts");
@@ -31,6 +32,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
             date: data.date,
             description: data.description,
             author: data.author,
+            image: data.image,
             content,
           };
         })
@@ -56,6 +58,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       date: data.date,
       description: data.description,
       author: data.author,
+      image: data.image,
       content,
     };
   } catch (error) {
