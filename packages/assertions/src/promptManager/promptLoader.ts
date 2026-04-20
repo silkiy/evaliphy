@@ -18,7 +18,7 @@ export interface LoadedPrompt {
  */
 export class PromptLoader {
   /**
-   * High-level orchestrator to resolve and load a prompt.
+   * Main entry point to resolve and load a prompt.
    */
   static resolveAndLoad(matcherName: string, assertion: AssertionDefinition, config: any): LoadedPrompt {
     try {
@@ -36,52 +36,64 @@ export class PromptLoader {
   }
 
   /**
-   * Logic to find the first existing prompt file path based on priority.
+   * Orchestrates the discovery process using single-responsibility check methods.
    */
   private static resolvePromptPath(matcherName: string, config: any): string {
-    const { customPath, distPath, sourcePath } = this.getPotentialPaths(matcherName, config);
+    const fileName = `${matcherName}.md`;
 
-    // Priority 1: User Config
-    if (customPath && this.exists(customPath)) {
-      return customPath;
-    }
-    
-    if (customPath) {
-        logger.warn(`Custom prompt file not found at: ${customPath}. Falling back to defaults.`);
-    }
+    // 1. Check User Config (Priority 1)
+    const customPath = this.checkUserConfig(config, fileName);
+    if (customPath) return customPath;
 
-    // Fallback 1: SDK Dist
-    if (this.exists(distPath)) {
-      return distPath;
-    }
+    // 2. Check SDK Dist (Fallback 1)
+    const distPath = this.checkSdkDist(fileName);
+    if (distPath) return distPath;
 
-    // Fallback 2: SDK Source
-    if (this.exists(sourcePath)) {
-      return sourcePath;
-    }
+    // 3. Check SDK Source (Fallback 2)
+    const sourcePath = this.checkSdkSource(fileName);
+    if (sourcePath) return sourcePath;
 
-    // Default to Dist path even if missing to trigger standard FILE_NOT_FOUND error in load()
-    return distPath;
+    // Default return to Dist path if none found (to trigger FILE_NOT_FOUND error in load())
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    return path.resolve(__dirname, './prompts', fileName);
   }
 
   /**
-   * Calculates all potential paths where the prompt might exist.
+   * Priority 1: Check for custom prompts directory from user config.
    */
-  private static getPotentialPaths(matcherName: string, config: any) {
+  private static checkUserConfig(config: any, fileName: string): string | null {
     const configDir = config.configFile ? path.dirname(config.configFile) : process.cwd();
-    const fileName = `${matcherName}.md`;
+    const promptsDir = config.llmAsJudgeConfig?.promptsDir;
 
-    const customPromptsDir = config.llmAsJudgeConfig?.promptsDir
-      ? path.resolve(configDir, config.llmAsJudgeConfig.promptsDir)
-      : null;
+    if (!promptsDir) return null;
 
+    const customPath = path.resolve(configDir, promptsDir, fileName);
+    if (this.exists(customPath)) {
+      return customPath;
+    }
+
+    logger.warn(`Custom prompt file not found at: ${customPath}. Falling back to defaults.`);
+    return null;
+  }
+
+  /**
+   * Fallback 1: Check for default prompts directory in bundled SDK (Dist).
+   */
+  private static checkSdkDist(fileName: string): string | null {
     const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const distPath = path.resolve(__dirname, './prompts', fileName);
     
-    return {
-      customPath: customPromptsDir ? path.join(customPromptsDir, fileName) : null,
-      distPath: path.resolve(__dirname, './prompts', fileName),
-      sourcePath: path.resolve(__dirname, '../../prompts', fileName)
-    };
+    return this.exists(distPath) ? distPath : null;
+  }
+
+  /**
+   * Fallback 2: Check for default prompts directory in SDK Source (for development).
+   */
+  private static checkSdkSource(fileName: string): string | null {
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const sourcePath = path.resolve(__dirname, '../../prompts', fileName);
+    
+    return this.exists(sourcePath) ? sourcePath : null;
   }
 
   static exists(filePath: string): boolean {
@@ -124,7 +136,6 @@ export class PromptLoader {
     }
     const frontmatter: any = {};
 
-    // Simple YAML-like parser for basic frontmatter
     yamlStr.split('\n').forEach(line => {
       const [key, ...rest] = line.split(':');
       if (key && rest.length > 0) {
